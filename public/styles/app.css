@@ -1,0 +1,26 @@
+body{
+    background-image: url(/images/fille.jpg);
+    height: 80vh !important;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* je decouvre */
+.titre{
+    height: 80vh;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* footer */
+.iconnes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.iconnes a{
+    color: black;
+}
+

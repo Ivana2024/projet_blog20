@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lasteName = null;
+    private ?string $lastName = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
@@ -134,14 +134,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLasteName(): ?string
+    public function getLastName(): ?string
     {
-        return $this->lasteName;
+        return $this->lastName;
     }
 
-    public function setLasteName(string $lasteName): static
+    public function setLastName(string $lastName): static
     {
-        $this->lasteName = $lasteName;
+        $this->lastName = $lastName;
 
         return $this;
     }
