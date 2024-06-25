@@ -50,7 +50,9 @@
     {# la barre de navigation #}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <img style=" width: 80px" src="/images/logo-ivana-2.svg" alt="logo">
+            <a href="{{path('visitor_welcome_index')}}">
+                <img style=" width: 80px" src="/images/logo-ivana-2.svg" alt="logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -85,7 +87,7 @@
                     <a class="nav-link" href="#">Connexion</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
+                    <a class="nav-link" href="{{path('visitor_registration_register')}}">Inscription</a>
                     </li>
                 </ul>
             </div>
@@ -93,14 +95,14 @@
     </nav>
 
     <!-- Title "Bienvenue sur mon blog de voyage" + "Je découvre"-->
-    <main class="d-flex flex-row">
+    {# <main class="d-flex flex-row">
     <div class="col-md-5 order-1">
     </div>
         <div class="conteneur col-md-7 order-2 titre d-flex flex-column">
         <p class="h3 w-75 text-center"> Bienvenue sur mon blog de voyages</p>
         <a class="btn border-1 border-black border-opacity-25 " href="destinations.html"> Je découvre</a>
         </div>
-    </main>
+    </main> #}
 
    {# le contenu spécifique à chaque page #}
    {% block main %}
