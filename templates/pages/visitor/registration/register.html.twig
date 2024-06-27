@@ -15,7 +15,7 @@
             <div class="col-lg-7 text-center">
                 <img src="{{asset('img/visitor/registration/island.400x245.jpeg')}}" alt="inscription" ="img-fluid">
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5 d-flex flex-column justify-content-center align-items-center">
 
             {% for flashes_error in app.flashes('verify_email_error') %}
             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>  
@@ -82,9 +82,14 @@
                 </div>
              </div>    
              <div>
-                <input formnovalidate type="submit" class="btn btn-primary shadow" value="S'inscrire">
+                <input formnovalidate type="submit" class=" w-100 btn btn-primary shadow" value="S'inscrire">
              </div> 
                {{ form_end(registrationForm) }}
+
+               <div class="text-center mt-3">
+                  <p>Vous avez déjà un compte ? <a href="{{path('visitor_authentication_login')}}">Connectez-vous</a></p>
+                  <p><a href="{{path('visitor_welcome_index')}}">Retour à l'accueil</a></p>
+               </div>
             </div>
         </div>
     </main>

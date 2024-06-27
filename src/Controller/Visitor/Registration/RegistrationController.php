@@ -22,11 +22,17 @@ class RegistrationController extends AbstractController
 {
     public function __construct(private EmailVerifier $emailVerifier)
     {
+        $this->emailVerifier = $emailVerifier;
     }
 
     #[Route('/register', name: 'visitor_registration_register', methods:['GET','POST'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) 
+        {
+            return $this->redirectToRoute('visitor_welcome_index');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         
@@ -93,7 +99,7 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', "Votre email a bien été confirmé. Veuillez-vous connecter.");
 
-        return $this->redirectToRoute('visitor_welcome_index');
+        return $this->redirectToRoute('visitor_authentication_login');
     }
 }
 
