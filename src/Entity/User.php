@@ -1,15 +1,15 @@
 <?php
-
 namespace App\Entity;
 
-use Assert\NotComprisedPassword;
+
+
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 
 
@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         match: true,
         message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
     )]
-    #[Assert\NotCompromisedPassword(message: "Ce mot de passe est facilement piratable, veuillez en choisir un autre.")]  
+    #[NotCompromisedPassword(message: "Ce mot de passe est facilement piratable, veuillez en choisir un autre.")]  
     #[ORM\Column]
     private ?string $password = null;
 
