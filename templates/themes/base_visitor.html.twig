@@ -1,140 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    {# l'encodage des caractères #}
+    <!-- Character Encoding -->
     <meta charset="UTF-8">
     
-    {# le minimum de résponsive design #}
+    <!-- Responsive Design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    {# le titre de chaque pagedans l'onglet #}
+    <!-- Page Title -->
     <title>{% block title %}{% endblock %} Evasion </title>
 
-    {# la description de chaque page #}
+    <!-- Page Description -->
     <meta name="description" content="{% block description %}{% endblock %}">
 
-    {# les balises utiles pour le SEO #}
+    <!-- SEO Meta Tags -->
     <meta name="robots" content="index,follow">
-
     <meta name="author" content="ivana">
     <meta name="publisher" content="#">
 
-
-    {# la feuille de style de Bootstrap 5 #}
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- lien css -->
+    <!-- Custom CSS -->
     {% block style %}
-      
-    
     {% endblock %}
 
-    <!-- icone -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet" />
     <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet" />
 
-    <!-- logo evasion -->
-    <link rel="shortcut icon" href="{{path('visitor_welcome_index')}}" type="image/svg+xml">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ path('visitor_welcome_index') }}" type="image/svg+xml">
     
-   {# Google font #}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    {# la barre de navigation #}
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a href="{{path('visitor_welcome_index')}}">
-                <img style=" width: 80px" src="/images/logo-ivana-2.svg" alt="logo">
+            <a href="{{ path('visitor_welcome_index') }}">
+                <img style="width: 80px" src="/images/logo-ivana-2.svg" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{path('visitor_welcome_index')}}">Accueil</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{{path('app_visitor_quisuisje')}}">Qui suis-je?</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{{path('app_visitor_conseilsauxvoyageurs')}}">Conseils aux voyageurs</a>
-                </li>
-                   <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-dark" href="{{path('app_visitor_destinations')}}" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <!-- Destinations -->
-                  Destinations
-                </a>
-                <ul class="dropdown-menu ">
-                  <li><a class="dropdown-item" href="#">Thailande</a></li>
-                  <li><a class="dropdown-item" href="#">Italie</a></li>
-                  <li><a class="dropdown-item" href="#">Portugal</a></li>
-                  <li><a class="dropdown-item" href="#">Australie</a></li>
-                  <li><a class="dropdown-item" href="#">Croitie</a></li>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('visitor_welcome_index') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_visitor_quisuisje') }}">Qui suis-je?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_visitor_conseilsauxvoyageurs') }}">Conseils aux voyageurs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="{{ path('app_visitor_destinations') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Destinations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Thailande</a></li>
+                            <li><a class="dropdown-item" href="#">Italie</a></li>
+                            <li><a class="dropdown-item" href="#">Portugal</a></li>
+                            <li><a class="dropdown-item" href="#">Australie</a></li>
+                            <li><a class="dropdown-item" href="#">Croitie</a></li>
+                        </ul>
+                    </li>
                 </ul>
-              </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                  {% if app.user %}
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
-                          </li>
-                  {% else %}
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{path('visitor_authentication_login')}}">Connexion</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{path('visitor_registration_register')}}">Inscription</a>
-                          </li>
-                  {% endif %}
-                  
-            </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin_home_index') }}">Espace admin</a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('user_home_index') }}">Espace user</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('visitor_authentication_login') }}">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('visitor_registration_register') }}">Inscription</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Title "Bienvenue sur mon blog de voyage" + "Je découvre"-->
-    {# <main class="d-flex flex-row">
-    <div class="col-md-5 order-1">
-    </div>
-        <div class="conteneur col-md-7 order-2 titre d-flex flex-column">
-        <p class="h3 w-75 text-center"> Bienvenue sur mon blog de voyages</p>
-        <a class="btn border-1 border-black border-opacity-25 " href="destinations.html"> Je découvre</a>
-        </div>
-    </main> #}
+    <!-- Main Content -->
+    {% block main %}
+    {% endblock %}
 
-   {# le contenu spécifique à chaque page #}
-   {% block main %}
-   
-   {% endblock %}
-
-   <!-- footer  -->
-            <footer class="iconnes fixed-bottom">
-              <div class="container-fluid bg-body rounded-4 opacity-50 d-flex justify-content-center pt-2">
-                <div class="iconnes">
-                  <div>
+    <!-- Footer -->
+    <footer class="iconnes fixed-bottom">
+        <div class="container-fluid bg-body rounded-4 opacity-50 d-flex justify-content-center pt-2">
+            <div class="iconnes">
+                <div>
                     <a href="https://www.instagram.com/"><i class="fab fa-instagram" target="_blank"></i></a>
                     <a href="https://twitter.com/"><i class="fab fa-twitter" target="_blank"></i></a>
                     <a href="https://www.facebook.com/ "><i class="fab fa-facebook" target="_blank"></i></a>
                     <a href="mailto:email@exemple.com"><i class="fas fa-envelope" target="_blank"></i></a>
-                  </div>
-                  <!-- Contact -->
-                  <p>&copy Contactez-nous au 06 51 22 99 10</p>
                 </div>
-              </div>
-            </footer>
+                <!-- Contact Info -->
+                <p>&copy; Contactez-nous au 06 51 22 99 10</p>
+            </div>
+        </div>
+    </footer>
 
-
-
-    {# le script de Bootsrap 5 #}
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
