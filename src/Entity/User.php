@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         match: true,
         message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
     )]
-    #[NotCompromisedPassword(message: " ")]  
+    #[NotCompromisedPassword(message: "Votre mot de passe est facilement piratable. ")]  
     #[ORM\Column]
     private ?string $password = null;
 
