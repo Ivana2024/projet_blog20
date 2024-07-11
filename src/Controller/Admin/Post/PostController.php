@@ -7,6 +7,7 @@ use App\Form\PostType;
 
 use DateTimeImmutable;
 use App\Form\PostFormType;
+use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,20 +19,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
     #[Route('/admin/post/list', name: 'admin_post_index', methods:['GET'])]
-    public function index(PostRepository $postRepository): Response
+    public function index(PostRepository $postRepository ): Response
     {
         $posts = $postRepository->findAll();
+        
         return $this->render('pages/admin/post/index.html.twig', [
             "posts" => $posts
         ]);
     }
 
     #[Route('/admin/post/create ', name: 'admin_post_create', methods:['GET','POST'])]
-    public function create(Request $request, EntityManagerInterface $em): Response
+    public function create(Request $request, EntityManagerInterface $em, CategoryRepository $categoryRepository ): Response
     {   
+        if(count($categoryRepository->findAll())<= 0)
+        {
+            $this->addFlash('warning', "Veuillez créer au moins une catégorie avant de rédiger des articles.");
+            return $this->redirectToRoute("admin_category_index");
+        }
+
         $post = new Post();
 
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(PostFormType::class, $post);
 
         $form->handleRequest($request);
 
@@ -111,7 +119,7 @@ class PostController extends AbstractController
     public function edit(Post $post, Request $request, EntityManagerInterface $em): Response
     {
 
-        $form = $this->createForm(PostType::class, $post, [
+        $form = $this->createForm(PostFormType::class, $post, [
             "method" => "PUT"
         ]);
 

@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 
+use App\Entity\Tag;
 use App\Entity\Category;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[Vich\Uploadable]
@@ -84,6 +87,17 @@ class Post
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $publichedAt = null;
+
+    /**
+     * @var Collection<int, Tag>
+     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
+    private Collection $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -243,6 +257,30 @@ class Post
     public function setPublichedAt(?\DateTimeImmutable $publichedAt): static
     {
         $this->publichedAt = $publichedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): static
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): static
+    {
+        $this->tags->removeElement($tag);
 
         return $this;
     }

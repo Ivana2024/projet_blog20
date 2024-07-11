@@ -3,8 +3,31 @@
 {% block title %}Qui suis je?{% endblock %}
 
 {% block description %}Qui suis je?{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="/styles/quisuisje.css">
+{% endblock %}
 {% block main %}
   <main>
-  <h1 class="text-center my-3 display-5">Qui suis-je?</h1>
+  <h1 class="text-center my-3 display-5"></h1>
+  <!-- Image principale -->
+     <section class="d-flex flex-wrap mt-5">
+        <div class="photo col-md-5 m-5">
+          <img src="{{asset('img/visitor/quisuisje/tatou.jpg')}}"class="img.fluid" alt="tatou">
+        </div>
+        <div class="texte col-md-5 m-2">
+          <h2>Hello !</h2>
+            <p class="pt-5">
+              <p>Moi c'est Ivana , </p>
+                  Je suis passionnée de voyages et toujours en quête d’aventures et de découvertes. Mon passeport est mon meilleur
+                  ami, et ma caméra est mon compagnon de route.
+                  Pourquoi ce Blog ?
+                  J’ai créé ce blog pour partager mes expériences, mes conseils et mes coups de cœur avec d’autres voyageurs. Que
+                  vous soyez passionné de voyages ou un voyageur occasionnel, j’espère que mes récits vous inspireront à
+                  explorer le monde.
+            <p> N’hésitez pas à laisser un commentaire ou à me contacter pour échanger sur nos passions communes.
+                Bon voyage virtuel !
+            </p>
+        </div>
+     </section>
   </main>
 {% endblock %}
