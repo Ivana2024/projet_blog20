@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller\Admin\Tag;
 
+use DateTimeImmutable;
+use App\Form\AdminTagFormType;
 use App\Entity\Tag;
 use App\Form\TagFormType;
 use App\Repository\TagRepository;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/admin')]
 class TagController extends AbstractController
 {
     #[Route('/admin/tag/list', name: 'admin_tag_index', methods:['GET'])]
@@ -73,14 +76,15 @@ class TagController extends AbstractController
     #[Route('/admin/TAG/{id}/delete', name: 'admin_tag_delete', methods:['DELETE'])]
     public function delete(Tag $tag, Request $request,EntityManagerInterface $em): Response
     { 
-     if( $this->isCsrfTokenValid('delete_tag_'.$tag->getId(), $request->request->get('csrf_token')))
-    {
-        $em->remove($tag);
-        $em->flush();
-   
-        $this->addFlash('success', "Le tag a été suprimé.");
-    }
-        return $this->redirectToRoute('admin_tag_index');
+        if ( $this->isCsrfTokenValid('delete_tag_'.$tag->getId(), $request->request->get('_csrf_token')) ) 
+        {
+            $this->addFlash('success', "Le tag {$tag->getName()} a été supprimé");
+
+            $em->remove($tag);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute("admin_tag_index");
     }
 }
  

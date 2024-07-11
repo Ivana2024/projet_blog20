@@ -24,6 +24,7 @@
 
     <!-- Custom CSS -->
     {% block style %}
+
     {% endblock %}
 
     <!-- Font Awesome Icons -->
@@ -67,7 +68,7 @@
                             Destinations
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Thailande</a></li>
+                            <li><a class="dropdown-item" href="">Thailande</a></li>
                             <li><a class="dropdown-item" href="#">Italie</a></li>
                             <li><a class="dropdown-item" href="#">Portugal</a></li>
                             <li><a class="dropdown-item" href="#">Australie</a></li>
@@ -105,6 +106,9 @@
 
     <!-- Main Content -->
     {% block main %}
+    <li class="nav-item">
+             <a class="nav-link" href="{{ path('app_visitor_destinations')}}">Je découvre</a>
+     </li>
     {% endblock %}
 
     <!-- Footer -->
