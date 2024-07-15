@@ -1,6 +1,7 @@
 <?php
+namespace App\Controller\Admin\Category;
 
-namespace App\Controller\Admin;
+
 
 use App\Entity\Category;
 use App\Form\CategoryFormType;
