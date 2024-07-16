@@ -20,8 +20,8 @@
 
         {# Select2 #}
         {% block select2 %}{% endblock %}
-
-        {# Font awesome #}
+ 
+       {# Font awesome #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         {# A stylesheet part of Bootstrap 5 #}
@@ -194,19 +194,24 @@
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_category_index')}}">
                                         <i class="fa-regular fa-folder-open"></i>
-                                        Catégories
+                                        Les catégories
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('admin_post_index') }}">
                                         <i class="fa-solid fa-feather-pointed"></i>
-                                        Articles
+                                        Les articles
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('admin_tag_index') }}">
                                         <i class="fa-solid fa-hashtag"></i>
-                                        Tags
+                                        Les tags
+                                    </a>
+                                </li> <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('admin_contact_index') }}">
+                                        <i class="fa-solid fa-hashtag"></i>
+                                        Les contacts
                                     </a>
                                 </li>
                                 {# <li class="nav-item">

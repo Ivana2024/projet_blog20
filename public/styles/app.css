@@ -23,4 +23,7 @@ body{
 .iconnes a{
     color: black;
 }
-
+.yb-visitor-header
+{
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
