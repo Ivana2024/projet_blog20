@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
-    #[Route('/admin/contact/list', name: 'app_admin_contact_index', methods:['GET'])]
+    #[Route('/admin/contact/list', name: 'admin_contact_index', methods:['GET'])]
     public function index(ContactRepository $contactRepository): Response
     {
  

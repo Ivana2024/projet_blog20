@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\ArgumentResolver\EntityValueResolver;
+
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[UniqueEntity('name', message:"Cette catégorie existe déjà.")]

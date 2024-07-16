@@ -10,24 +10,22 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Loader\Configurator\form;
 use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractController
 {
 
-
-    public function __construct( private EntityManagerInterface $em)
-    {
-        
+    public function __construct( 
+        private EntityManagerInterface $em, 
+        private CategoryRepository $categoryRepository
+    )
+    {  
     }
     #[Route('/admin/category/list', name: 'admin_category_index', methods:['GET'])]
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(): Response
     {
-        $categories = $categoryRepository->findAll();
-        
         return $this->render('pages/admin/category/index.html.twig', [
-            "categories" => $categories
+            "categories" => $this->categoryRepository->findAll()
         ]);
     }
 
@@ -36,7 +34,7 @@ class CategoryController extends AbstractController
     { 
         $category = new Category();
  
-       $form = $this->createForm(CategoryFormType::class,$category);
+       $form = $this->createForm(CategoryFormType::class, $category);
 
        $form->handleRequest($request);
 
@@ -58,7 +56,7 @@ class CategoryController extends AbstractController
     #[Route('/admin/category/{id}/edit', name: 'admin_category_edit', methods:['GET','POST'])]
     public function edit(Category $category, Request $request, EntityManagerInterface $em): Response
     {  
-         $form = $this->createForm(CategoryFormType::class,$category,[
+         $form = $this->createForm(CategoryFormType::class, $category,[
             "method" => "POST"
          ]);
           
@@ -75,14 +73,16 @@ class CategoryController extends AbstractController
         }
 
         return $this->render("pages/admin/category/edit.html.twig",[
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "category" => $category
             
         ]);
     }
-    #[Route('/admin/category/{id}/delete', name: 'admin_category_delete', methods:['GET','POST'])]
-    public function delete(Category $category, Request $request,EntityManagerInterface $em): Response
+
+    #[Route('/admin/category/{id}/delete', name: 'admin_category_delete', methods:['DELETE'])]
+    public function delete(Category $category, Request $request, EntityManagerInterface $em): Response
     { 
-     if( $this->isCsrfTokenValid('delete_category_'.$category->getId(), $request->request->get('csrf_token')))
+     if( $this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('csrf_token')))
     {
         $em->remove($category);
         $em->flush();
@@ -91,4 +91,5 @@ class CategoryController extends AbstractController
     }
         return $this->redirectToRoute('admin_category_index');
     }
+
 }

@@ -41,11 +41,12 @@ class TagController extends AbstractController
 
             $this->addFlash("success", "Le tag a été ajouté.");
 
-            $this->redirectToRoute("admin_tag_index");
+            return $this->redirectToRoute("admin_tag_index");
         }
 
         return $this->render('pages/admin/tag/create.html.twig', [
-            "form"=> $form->createView()
+            "form"=> $form->createView(),
+            "tags" => "tags"
         ]);
     }
 
@@ -73,10 +74,10 @@ class TagController extends AbstractController
             
         ]);
     }
-    #[Route('/admin/TAG/{id}/delete', name: 'admin_tag_delete', methods:['DELETE'])]
+    #[Route('/admin/tag/{id}/delete', name: 'admin_tag_delete', methods:['DELETE'])]
     public function delete(Tag $tag, Request $request,EntityManagerInterface $em): Response
     { 
-        if ( $this->isCsrfTokenValid('delete_tag_'.$tag->getId(), $request->request->get('_csrf_token')) ) 
+        if ( $this->isCsrfTokenValid('delete'.$tag->getId(), $request->request->get('csrf_token')) ) 
         {
             $this->addFlash('success', "Le tag {$tag->getName()} a été supprimé");
 
